@@ -1,0 +1,95 @@
+{
+    "model": {
+        "type": "minecraft:composite",
+        "models": [
+            {
+                "type": "minecraft:model",
+                "model": "minecraft:item/golden_axe"
+            },
+            {
+                "type": "minecraft:condition",
+                "property": "minecraft:component",
+                "predicate": "minecraft:enchantments",
+                "value": [
+                    {
+                        "enchantments": "minecraft:efficiency",
+                        "levels": {
+                            "min": 1,
+                            "max": 255
+                        }
+                    }
+                ],
+                "on_true": {
+                    "type": "minecraft:model",
+                    "model": "encheff:item/overlays/axe/efficiency"
+                },
+                "on_false": {
+                    "type": "minecraft:empty"
+                }
+            },
+            {
+                "type": "minecraft:condition",
+                "property": "minecraft:component",
+                "predicate": "minecraft:enchantments",
+                "value": [
+                    {
+                        "enchantments": "minecraft:looting",
+                        "levels": {
+                            "min": 1,
+                            "max": 255
+                        }
+                    }
+                ],
+                "on_true": {
+                    "type": "minecraft:model",
+                    "model": "encheff:item/overlays/axe/looting"
+                },
+                "on_false": {
+                    "type": "minecraft:empty"
+                }
+            },
+            {
+                "type": "minecraft:condition",
+                "property": "minecraft:component",
+                "predicate": "minecraft:enchantments",
+                "value": [
+                    {
+                        "enchantments": "minecraft:mending",
+                        "levels": {
+                            "min": 1,
+                            "max": 255
+                        }
+                    }
+                ],
+                "on_true": {
+                    "type": "minecraft:model",
+                    "model": "encheff:item/overlays/axe/mending"
+                },
+                "on_false": {
+                    "type": "minecraft:empty"
+                }
+            },
+            {
+                "type": "minecraft:condition",
+                "property": "minecraft:component",
+                "predicate": "minecraft:enchantments",
+                "value": [
+                    {
+                        "enchantments": "minecraft:unbreaking",
+                        "levels": {
+                            "min": 1,
+                            "max": 255
+                        }
+                    }
+                ],
+                "on_true": {
+                    "type": "minecraft:model",
+                    "model": "encheff:item/overlays/axe/unbreaking"
+                },
+                "on_false": {
+                    "type": "minecraft:empty"
+                }
+            }
+        ]
+    }
+}

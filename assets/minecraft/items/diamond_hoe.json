@@ -1,0 +1,74 @@
+{
+    "model": {
+        "type": "minecraft:composite",
+        "models": [
+            {
+                "type": "minecraft:model",
+                "model": "minecraft:item/diamond_hoe"
+            },
+            {
+                "type": "minecraft:condition",
+                "property": "minecraft:component",
+                "predicate": "minecraft:enchantments",
+                "value": [
+                    {
+                        "enchantments": "minecraft:efficiency",
+                        "levels": {
+                            "min": 1,
+                            "max": 255
+                        }
+                    }
+                ],
+                "on_true": {
+                    "type": "minecraft:model",
+                    "model": "encheff:item/overlays/hoe/efficiency"
+                },
+                "on_false": {
+                    "type": "minecraft:empty"
+                }
+            },
+            {
+                "type": "minecraft:condition",
+                "property": "minecraft:component",
+                "predicate": "minecraft:enchantments",
+                "value": [
+                    {
+                        "enchantments": "minecraft:mending",
+                        "levels": {
+                            "min": 1,
+                            "max": 255
+                        }
+                    }
+                ],
+                "on_true": {
+                    "type": "minecraft:model",
+                    "model": "encheff:item/overlays/hoe/mending"
+                },
+                "on_false": {
+                    "type": "minecraft:empty"
+                }
+            },
+            {
+                "type": "minecraft:condition",
+                "property": "minecraft:component",
+                "predicate": "minecraft:enchantments",
+                "value": [
+                    {
+                        "enchantments": "minecraft:unbreaking",
+                        "levels": {
+                            "min": 1,
+                            "max": 255
+                        }
+                    }
+                ],
+                "on_true": {
+                    "type": "minecraft:model",
+                    "model": "encheff:item/overlays/hoe/unbreaking"
+                },
+                "on_false": {
+                    "type": "minecraft:empty"
+                }
+            }
+        ]
+    }
+}
