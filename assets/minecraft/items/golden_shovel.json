@@ -54,6 +54,27 @@
                 "predicate": "minecraft:enchantments",
                 "value": [
                     {
+                        "enchantments": "minecraft:silk_touch",
+                        "levels": {
+                            "min": 1,
+                            "max": 255
+                        }
+                    }
+                ],
+                "on_true": {
+                    "type": "minecraft:model",
+                    "model": "encheff:item/overlays/shovel/silk_touch"
+                },
+                "on_false": {
+                    "type": "minecraft:empty"
+                }
+            },
+            {
+                "type": "minecraft:condition",
+                "property": "minecraft:component",
+                "predicate": "minecraft:enchantments",
+                "value": [
+                    {
                         "enchantments": "minecraft:mending",
                         "levels": {
                             "min": 1,
@@ -85,6 +106,27 @@
                 "on_true": {
                     "type": "minecraft:model",
                     "model": "encheff:item/overlays/shovel/unbreaking"
+                },
+                "on_false": {
+                    "type": "minecraft:empty"
+                }
+            },
+            {
+                "type": "minecraft:condition",
+                "property": "minecraft:component",
+                "predicate": "minecraft:enchantments",
+                "value": [
+                    {
+                        "enchantments": "minecraft:vanishing_curse",
+                        "levels": {
+                            "min": 1,
+                            "max": 255
+                        }
+                    }
+                ],
+                "on_true": {
+                    "type": "minecraft:model",
+                    "model": "encheff:item/overlays/shovel/vanishing_curse"
                 },
                 "on_false": {
                     "type": "minecraft:empty"

@@ -1,1 +1,5 @@
-{}
+{
+    "tasks": {
+        "build": "deno .\\build.js --allow-net --allow-read --allow-write"
+    }
+}

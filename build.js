@@ -120,13 +120,15 @@ class ItemDefinitionWriter {
         console.log(`[ItemDefinitionWriter] Finished writing '${itemCategory}' ✅`)
     }
 }
-const SharedEnchantments = new EnchantmentsList("mending", "unbreaking")
+const SharedEnchantments = new EnchantmentsList("mending", "unbreaking", "vanishing_curse")
+const WeaponSharedEnchantments = new EnchantmentsList("sharpness", "fire_aspect", "looting", "knockback", "smite", "bane_of_arthropods")
+const ToolSharedEnchantments = new EnchantmentsList("efficiency", "fortune", "silk_touch")
 const Enchantments = {
-    sword: new EnchantmentsList("sweeping_edge", "sharpness", SharedEnchantments),
-    pickaxe: new EnchantmentsList("efficiency", "fortune", SharedEnchantments),
-    axe: new EnchantmentsList("efficiency", "looting", SharedEnchantments),
-    shovel: new EnchantmentsList("efficiency", "fortune", SharedEnchantments),
-    hoe: new EnchantmentsList("efficiency", SharedEnchantments),
+    sword: new EnchantmentsList(WeaponSharedEnchantments,  SharedEnchantments),
+    pickaxe: new EnchantmentsList(ToolSharedEnchantments, SharedEnchantments),
+    axe: new EnchantmentsList(ToolSharedEnchantments, WeaponSharedEnchantments, SharedEnchantments),
+    shovel: new EnchantmentsList(ToolSharedEnchantments, SharedEnchantments),
+    hoe: new EnchantmentsList(ToolSharedEnchantments, SharedEnchantments),
 }
 async function build() {
     const TAGS = {
