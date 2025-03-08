@@ -34,7 +34,7 @@ for await (const dirEntry of Deno.readDir(PATHS.raw_textures)) {
   for await (const file of Deno.readDir(`${PATHS.raw_textures}/${dirEntry.name}`)) {
     if (!file.isFile) continue
     if (!file.name.endsWith(".gif")) continue
-    gifToSpritesheet(`${PATHS.raw_textures}/${dirEntry.name}/${file.name}`,`${PATHS.textures}/${dirEntry.name}/${file.name}`)
+    gifToSpritesheet(`${PATHS.raw_textures}/${dirEntry.name}/${file.name}`,`${PATHS.textures}/${dirEntry.name}/${file.name.replace('.gif','.png')}`)
   }
 }
 // ffmpeg -skip_frame nokey -i ./raw_textures/sword/sweeping_edge.gif -vf 'tile=1x19' -an -vsync 0 out.png
