@@ -1,5 +1,6 @@
 {
     "tasks": {
-        "build": "deno .\\build.js --allow-net --allow-read --allow-write"
+        "jsonbuild": "deno --allow-net --allow-read --allow-write .\\buildJSONs.js",
+        "imgbuild": "deno --allow-all .\\buildImages.js"
     }
 }

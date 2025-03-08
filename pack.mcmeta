@@ -1,6 +1,6 @@
 {
     "pack": {
-        "pack_format": 49,
+        "pack_format": 54,
         "description": "Adds animated visuals per item type with specific enchants."
     }
 }
