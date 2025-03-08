@@ -130,6 +130,11 @@ const Enchantments = {
     shovel: new EnchantmentsList(ToolSharedEnchantments, SharedEnchantments),
     hoe: new EnchantmentsList(ToolSharedEnchantments, SharedEnchantments),
 }
+let mcfuncitonFile = {
+    content: "",
+    x: 0,
+    y: 0
+}
 async function build() {
     const TAGS = {
         sword: (await (await fetch(`${MCMETA_REPO}data/minecraft/tags/item/swords.json`)).json()).values,
@@ -149,10 +154,21 @@ async function build() {
             await fs.ensureDir(`${PATHS.path_texture}${category}/`)
             await Deno.writeFile(`${PATHS.path_model}${category}/${enchant}.json`, OverlayModel);
             await Deno.writeFile(`${PATHS.path_texture}${category}/${enchant}.png.mcmeta`, AnimatedTextureSettings);
+
+            for (const item of itemTypes) {
+                mcfuncitonFile.content += `execute align xyz run setblock ~${mcfuncitonFile.x} ~${mcfuncitonFile.y} ~2 minecraft:stripped_oak_wood[axis=x]\n`;
+                mcfuncitonFile.content += `execute align xyz run summon minecraft:glow_item_frame ~${mcfuncitonFile.x} ~${mcfuncitonFile.y} ~1 {Facing:2b,Invisible:1b,Item:{id:"${item}",components:{"minecraft:enchantments":{"${_enchant}": 1}}}}\n`;
+                mcfuncitonFile.y += 1
+                if (mcfuncitonFile.y > 5) {
+                    mcfuncitonFile.x -= 1
+                    mcfuncitonFile.y = 0;
+                }
+            }
         }
         
         await new ItemDefinitionWriter(itemTypes, Enchantments[category]).write(category);
     }
+    await Deno.writeFile("./summon_tools.mcfunction", new TextEncoder().encode(mcfuncitonFile.content));
 }
 
 build();
