@@ -124,7 +124,7 @@ const SharedEnchantments = new EnchantmentsList("mending", "unbreaking", "vanish
 const WeaponSharedEnchantments = new EnchantmentsList("sharpness", "fire_aspect", "looting", "knockback", "smite", "bane_of_arthropods")
 const ToolSharedEnchantments = new EnchantmentsList("efficiency", "fortune", "silk_touch")
 const Enchantments = {
-    sword: new EnchantmentsList(WeaponSharedEnchantments,  SharedEnchantments),
+    sword: new EnchantmentsList("sweeping_edge", WeaponSharedEnchantments,  SharedEnchantments),
     pickaxe: new EnchantmentsList(ToolSharedEnchantments, SharedEnchantments),
     axe: new EnchantmentsList(ToolSharedEnchantments, WeaponSharedEnchantments, SharedEnchantments),
     shovel: new EnchantmentsList(ToolSharedEnchantments, SharedEnchantments),
