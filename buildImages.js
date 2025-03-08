@@ -6,13 +6,6 @@ const PATHS = {
   textures: "./assets/encheff/textures/item/overlays",
 };
 
-async function copyDirectories(copyDir,pasteDir) {
-  for await (const dirEntry of Deno.readDir(copyDir)) {
-    if (!dirEntry.isDirectory) continue
-    ensureDir(`${pasteDir}/${dirEntry.name}`)
-  }
-}
-
 async function gifToSpritesheet(gifPath,outputDir) {
   const frames = await gifFrames({ url: gifPath, frames: 'all' })
   const ffmpegCommand = new Deno.Command("ffmpeg", {
@@ -30,11 +23,18 @@ async function gifToSpritesheet(gifPath,outputDir) {
       outputDir
     ]
   })
-  const { stdout, stderr } = await ffmpegCommand.output();
-  console.warn(new TextDecoder().decode(stdout));
-  console.error(new TextDecoder().decode(stderr));
-  console.log('wahr??')
+  await ffmpegCommand.output();
+  console.log(`✅ Converted '${gifPath}' into a spritesheet`)
 }
 
-gifToSpritesheet(`${PATHS.raw_textures}/sword/sweeping_edge.gif`,`${PATHS.textures}/sword/sweeping_edge.png`)
+for await (const dirEntry of Deno.readDir(PATHS.raw_textures)) {
+  if (!dirEntry.isDirectory) continue
+  ensureDir(`${PATHS.textures}/${dirEntry.name}`)
+
+  for await (const file of Deno.readDir(`${PATHS.raw_textures}/${dirEntry.name}`)) {
+    if (!file.isFile) continue
+    if (!file.name.endsWith(".gif")) continue
+    gifToSpritesheet(`${PATHS.raw_textures}/${dirEntry.name}/${file.name}`,`${PATHS.textures}/${dirEntry.name}/${file.name}`)
+  }
+}
 // ffmpeg -skip_frame nokey -i ./raw_textures/sword/sweeping_edge.gif -vf 'tile=1x19' -an -vsync 0 out.png
