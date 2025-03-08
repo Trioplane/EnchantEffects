@@ -130,7 +130,7 @@ const Enchantments = {
     shovel: new EnchantmentsList(ToolSharedEnchantments, SharedEnchantments),
     hoe: new EnchantmentsList(ToolSharedEnchantments, SharedEnchantments),
 }
-let mcfuncitonFile = {
+const mcfuncitonFile = {
     content: "",
     x: 0,
     y: 0
@@ -157,7 +157,7 @@ async function build() {
 
             for (const item of itemTypes) {
                 mcfuncitonFile.content += `execute align xyz run setblock ~${mcfuncitonFile.x} ~${mcfuncitonFile.y} ~2 minecraft:stripped_oak_wood[axis=x]\n`;
-                mcfuncitonFile.content += `execute align xyz run summon minecraft:glow_item_frame ~${mcfuncitonFile.x} ~${mcfuncitonFile.y} ~1 {Facing:2b,Invisible:1b,Item:{id:"${item}",components:{"minecraft:enchantments":{"${_enchant}": 1}}}}\n`;
+                mcfuncitonFile.content += `execute align xyz run summon minecraft:glow_item_frame ~${mcfuncitonFile.x} ~${mcfuncitonFile.y} ~1 {Facing:2b,Invisible:1b,Item:{id:"${item}",components:{"minecraft:enchantments":{"${_enchant}": 1},"minecraft:enchantment_glint_override":false}}}\n`;
                 mcfuncitonFile.y += 1
                 if (mcfuncitonFile.y > 5) {
                     mcfuncitonFile.x -= 1
